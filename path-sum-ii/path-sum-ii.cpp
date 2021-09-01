@@ -27,11 +27,13 @@ public:
                 paths.push_back(path);
             }
         }
-        if(root->left) {
-            dfs(root->left, currentSum, targetSum);
-        } 
-        if(root->right) {
-            dfs(root->right, currentSum, targetSum);
+        else {
+            if(root->left) {
+                dfs(root->left, currentSum, targetSum);
+            } 
+            if(root->right) {
+                dfs(root->right, currentSum, targetSum);
+            }    
         }
         
         path.pop_back();
