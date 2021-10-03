@@ -16,11 +16,6 @@ public:
             }
         }
         
-        for(int i = 0; i < n; i++) {
-            cout << dp[i] << " ";
-        }
-        cout << "\n";
-        
         return dp[0];
     }
 };
