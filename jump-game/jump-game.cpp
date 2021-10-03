@@ -2,20 +2,13 @@ class Solution {
 public:
     bool canJump(vector<int>& nums) {
         int n = nums.size();
-        vector<bool> dp(n);
-        dp[n-1] = true;
-        for(int i = n-2; i >= 0; i--) {
-            if(i + nums[i] >= n-1) dp[i] = true;
-            else { // i + nums[i] < n-1
-                dp[i] = false;
-                for(int j = i+1; j <= i+nums[i]; j++) {
-                    if(dp[j]) {
-                        dp[i] = true; break;
-                    }
-                }
-            }
+        int reachable = 0;
+        
+        for(int i = 0; i <= reachable; i++) {
+            reachable = max(reachable, i+nums[i]);
+            if(reachable >= n-1) break;
         }
         
-        return dp[0];
+        return reachable >= n-1;
     }
 };
