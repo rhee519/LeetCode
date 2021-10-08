@@ -25,8 +25,8 @@ public:
             }
             curr = curr->children[word[i]];
         }
-        if(!(curr->exist)) return false;
-        return true;
+
+        return curr->exist == true;
     }
     
     bool startsWith(string prefix) {
