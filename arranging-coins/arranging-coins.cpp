@@ -1,13 +1,15 @@
 class Solution {
 public:
+    int binarySearch(int n, long long low, long long high) {
+        long long mid = (low+high)/2;
+        long long left = mid*(mid+1)/2, right = (mid+1)*(mid+2)/2;
+        if(left <= n and n < right)
+            return mid;
+        if(n < left) return binarySearch(n, low, mid);
+        else return binarySearch(n, mid+1, high);
+        
+    }
     int arrangeCoins(int n) {
-        // find k s.t. k(k+1)/2 <= n < (k+1)(k+2)/2
-        if(n == 1) return 1;
-        long long sum = 0;
-        for(int k = 1; k <= n; k++) {
-            sum += k;
-            if(sum > n) return k-1;
-        }
-        return 0;
+        return binarySearch(n, 1, n);
     }
 };
