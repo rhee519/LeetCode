@@ -4,10 +4,11 @@ public:
         vector<int> ans;
         unordered_map<int, int> Map;
         for(int num: nums) {
-            Map[num]++;
+            if(Map.count(num)) Map.erase(num);
+            else Map[num]++;
         }
-        for(auto it = Map.begin(); it != Map.end(); it++) {
-            if(it->second == 1) ans.push_back(it->first);
+        for(auto it: Map) {
+            ans.push_back(it.first);
         }
         return ans;
     }
