@@ -21,24 +21,14 @@ public:
         else insert(root->right, node);
     }
     
-    void dfs(TreeNode*& root, TreeNode*& parent, int key) {
-        if(!root) return;
-        if(root->val > key) {
-            dfs(root->left, root, key); return;
-        } else if(root->val < key) {
-            dfs(root->right, root, key); return;
-        }
-        
-        // found
-        insert(root->right, root->left);
-        root->left = nullptr;
-        root = root->right;
-        // insert(parent, root);
-    }
-    
     TreeNode* deleteNode(TreeNode* root, int key) {
-        TreeNode* parent = nullptr;
-        dfs(root, parent, key);
+        if(!root) return nullptr;
+        if(key < root->val) root->left = deleteNode(root->left, key);
+        else if(key > root->val) root->right = deleteNode(root->right, key);
+        else { // root->val == key
+            insert(root->right, root->left);
+            root = root->right;
+        }
         return root;
     }
 };
