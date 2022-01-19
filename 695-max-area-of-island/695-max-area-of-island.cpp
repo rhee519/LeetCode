@@ -20,13 +20,35 @@ public:
         }
     }
     
+    void bfs(vector<vector<int>>& grid, int i, int j, int& cnt) {
+        if(grid[i][j] == 0) return;
+        int m = grid.size(), n = grid[0].size();
+        queue<pair<int, int>> q;
+        q.push({i, j});
+        grid[i][j] = 0;
+        while(!q.empty()) {
+            auto pos = q.front(); q.pop();
+            int r = pos.first, c = pos.second;
+            grid[r][c] = 0;
+            cnt++;
+            for(int dir = 0; dir < 4; dir++) {
+                int r_next = r+dy[dir], c_next = c+dx[dir];
+                if(check(m, n, r_next, c_next) and grid[r_next][c_next]) {
+                    q.push({r_next, c_next});
+                    grid[r_next][c_next] = 0;
+                }
+            }
+        }
+    }
+    
     int maxAreaOfIsland(vector<vector<int>>& grid) {
         int m = grid.size(), n = grid[0].size();
         int ans = 0, cnt = 0;
         for(int i = 0; i < m; i++) {
             for(int j = 0; j < n; j++) {
                 cnt = 0;
-                dfs(grid, i, j, cnt);
+                // dfs(grid, i, j, cnt);
+                bfs(grid, i, j, cnt);
                 ans = max(ans, cnt);
             }
         }
