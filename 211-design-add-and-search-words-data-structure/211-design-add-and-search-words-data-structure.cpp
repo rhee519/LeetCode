@@ -34,9 +34,7 @@ public:
                     return true;
             }
         } else { // lowercase
-            if(!curr->children[ch-'a']) 
-                return false;
-            else return searchDFS(word, curr->children[ch-'a'], idx+1);
+            return searchDFS(word, curr->children[ch-'a'], idx+1);
         }
         return false;
     }
