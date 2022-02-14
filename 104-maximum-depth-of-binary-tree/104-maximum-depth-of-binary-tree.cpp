@@ -12,10 +12,12 @@
 class Solution {
 public:
     void dfs(TreeNode* root, int& max_depth, int depth) {
-        if(!root) return;
-        max_depth = max(max_depth, ++depth);
-        dfs(root->left, max_depth, depth);
-        dfs(root->right, max_depth, depth);
+        if(!root) {
+            max_depth = max(max_depth, depth);
+            return;
+        }
+        dfs(root->left, max_depth, depth+1);
+        dfs(root->right, max_depth, depth+1);
     }
     int maxDepth(TreeNode* root) {
         int max_depth = 0;
