@@ -4,13 +4,10 @@ class Solution:
         left, right = 0, len(people)-1
         ans = 0
         while left < right:
+            ans += 1
             if people[left] + people[right] <= limit:
-                ans += 1
                 left += 1
-                right -= 1
-            else:
-                ans += 1
-                right -= 1
+            right -= 1
         
         # the last man in the middle exists
         if left == right:
