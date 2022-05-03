@@ -1,7 +1,7 @@
 class Solution:
     def findUnsortedSubarray(self, nums: List[int]) -> int:
-        if len(nums) <= 1:
-            return 0
+        # if len(nums) <= 1:
+        #     return 0
         
         left_max, right_min = nums[0], nums[-1]
         start_idx, end_idx = -1, -1
