@@ -1,9 +1,10 @@
 class Solution:
     def removePalindromeSub(self, s: str) -> int:
-        q = deque(s)
+        l, r = 0, len(s)-1
         
-        while len(q) > 1 and q[0] == q[-1]:
-            q.popleft()
-            q.pop()
+        while l < r:
+            if s[l] != s[r]:
+                break
+            l, r = l+1, r-1
         
-        return 1 if len(q) <= 1 else 2
+        return 1 if l >= r else 2
