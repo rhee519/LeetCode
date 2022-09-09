@@ -3,10 +3,10 @@ class Solution:
         ans, st = [], []
         properties.sort(key=lambda x: (x[0], -x[1]))
         
-        for p in properties:
+        for a, d in properties:
             # print(f"st: {st}")
-            while st and st[-1][0] < p[0] and st[-1][1] < p[1]:
+            while st and st[-1] < d:
                 ans.append(st.pop())
-            st.append(p)
+            st.append(d)
         
         return len(ans)
